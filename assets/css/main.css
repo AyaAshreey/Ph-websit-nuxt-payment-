@@ -1,0 +1,9 @@
+:root{
+    --mainColor:#028391;
+    --secNavColor:#019DAE;
+    --btnColor:#FEAE6F
+  
+}
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
