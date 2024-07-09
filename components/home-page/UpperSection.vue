@@ -1,5 +1,5 @@
 <template>
-    <div class="upper-section mb-12">
+    <div class="upper-section mb-12 mt-8 mx-16">
         <v-container>
             <!-- ===================================================================== -->
             <!-- ============================First Row================================ -->
@@ -186,29 +186,33 @@
                                 </div>
                                 <!-- =================== -->
                                 <div class="parent-box mt-10 ">
-
-                                    <div class="squars d-flex ">
-                                        <div style="position: relative;">
-                                            <div class="upper-box" :style="upperBoxStyle">
-                                                <p style=" font-weight: 600;"> افضل قيمة </p>
+                                    <v-row class="squars d-flex ">
+                                        <v-col cols="4">
+                                            <div style="position: relative;">
+                                                <div class="upper-box" :style="upperBoxStyle">
+                                                    <p style=" font-weight: 600;"> افضل قيمة </p>
+                                                </div>
+                                                <div class="first-box" :style="firstBoxStyle">
+                                                    <p> 3 عبوات</p>
+                                                    <p> 1900 ر.س <span style="color: #C5C5C5;"> 2000 ر.س</span> </p>
+                                                </div>
                                             </div>
-                                            <div class="first-box" :style="firstBoxStyle">
-                                                <p> 3 عبوات</p>
-                                                <p> 1900 ر.س <span style="color: #C5C5C5;"> 2000 ر.س</span> </p>
+                                        </v-col>
+                                        <v-col cols="4">
+                                            <div class="small-box" :style="smallBoxStyle">
+                                                <p> 6 عبوات</p>
+                                                <p> 1900 ر.س <span style="color: #C5C5C5;"> 2000 ر.س </span></p>
                                             </div>
-                                        </div>
+                                        </v-col>
+                                        <v-col cols="4">
 
-                                        <div class="small-box" :style="smallBoxStyle">
-                                            <p> 6 عبوات</p>
-                                            <p> 1900 ر.س <span style="color: #C5C5C5;"> 2000 ر.س </span></p>
-                                        </div>
+                                            <div class="small-box">
+                                                <p> 9 عبوات</p>
+                                                <p> 1900 ر.س <span style="color: #C5C5C5;"> 2000 ر.س </span></p>
+                                            </div>
 
-                                        <div class="small-box">
-                                            <p> 9 عبوات</p>
-                                            <p> 1900 ر.س <span style="color: #C5C5C5;"> 2000 ر.س </span></p>
-                                        </div>
-
-                                    </div>
+                                        </v-col>
+                                    </v-row>
                                 </div>
                                 <!-- =================== -->
                                 <div class="btn-input d-flex  mt-5">
@@ -324,6 +328,10 @@ const toggleHeart = () => {
     direction: unset;
 }
 
+.v-container {
+    max-width: none;
+}
+
 .red-heart path {
     fill: red;
 }
@@ -358,7 +366,6 @@ const toggleHeart = () => {
     border-bottom: 1px solid var(--mainColor);
     border-left: 1px solid var(--mainColor);
     font-size: 12px;
-    width: 160px;
 }
 
 .small-box {
@@ -368,7 +375,6 @@ const toggleHeart = () => {
     border: 1px solid #C5C5C5;
     font-size: 12px;
     text-align: right;
-    width: 200px;
 }
 
 .input-quantity {

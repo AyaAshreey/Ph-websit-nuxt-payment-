@@ -33,7 +33,6 @@ definePageMeta({
 
 <style>
 .v-container {
-    margin-right: 0;
-    margin-left: 0;
+    max-width: none;
 }
 </style>

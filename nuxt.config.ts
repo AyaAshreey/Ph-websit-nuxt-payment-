@@ -3,6 +3,9 @@ import { defineNuxtConfig } from 'nuxt/config';
 
 
 export default defineNuxtConfig({
+  // plugins: [
+  //   '~/plugins/axios.js'
+  // ],
   components: true,
   devtools: { enabled: true },
   css: [
@@ -49,10 +52,6 @@ export default defineNuxtConfig({
 
     modules: ['navigation', 'pagination', 'autoplay'], // all modules are imported by default
   },
-  // plugins: [
-  //   '~/plugins/piniaPersistedstate.ts',
-
-  // ],
 
   imports: {
     dirs: ['stores'],

@@ -7,7 +7,8 @@
     </div>
 
 </template>
-<script setup>
-// import FirstHeadOnly from '~/components/global/FirstHeadOnly.vue';
-
-</script>
+<style>
+.v-application__wrap {
+    min-height: 40dvh !important;
+}
+</style>

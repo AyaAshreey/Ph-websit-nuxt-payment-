@@ -21,10 +21,10 @@
     "nuxt-swiper": "^1.2.2",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
-    "swiper": "^11.1.4",
     "vue": "^3.4.27",
     "vue-awesome-swiper": "^5.0.1",
     "vue-router": "^4.3.2",
+    "vue-slick-carousel": "^1.0.6",
     "vuetify": "^3.6.0-beta.0.0",
     "vuetify-nuxt-module": "^0.14.1",
     "vuex": "^4.0.2"

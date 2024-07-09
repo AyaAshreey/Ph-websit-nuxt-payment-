@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-16">
+    <div class="mx-16 my-16">
         <v-container>
             <v-row>
                 <v-col cols="7">
@@ -41,10 +41,11 @@
 
 
 
-        <usersShow :products="flashDeals" />
-        <MoreProducts :products="flashDeals" />
+
 
     </div>
+    <usersShow :products="flashDeals" />
+    <MoreProducts :products="flashDeals" />
 </template>
 <script setup>
 // import { defineComponent, ref, computed, onMounted } from 'vue';
@@ -83,8 +84,11 @@ onMounted(async () => {
 
 </script>
 <style>
-.v-container {
+/* .v-container {
     margin-right: 0;
     margin-left: 0;
+} */
+.v-container {
+    max-width: none;
 }
 </style>

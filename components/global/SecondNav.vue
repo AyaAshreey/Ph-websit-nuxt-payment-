@@ -1,9 +1,9 @@
 <template>
-    <div class="app-nav">
+    <div class="app-nav mx-16">
         <v-app>
             <v-app-bar class="pt-3" height="fit-content" color="var(--mainColor)">
                 <!-- <v-app-bar-nav-icon @click="openCart"></v-app-bar-nav-icon> -->
-                <v-container>
+                <v-container class="mx-8">
                     <v-row class="first-nav p-2">
 
                         <v-col cols="3" class="ps-8 " :style="computedColStyle">
@@ -27,10 +27,10 @@
                                             <v-list v-model:selected="selectedState" mandatory>
 
                                                 <!-- <v-list-item v-for=" lang  in  langs " :key="lang.lang" :value="lang">
-                          <v-list-item-title class="d-flex " style="gap: 10px">
-                            <span v-html="lang.icon"> </span> {{ lang.lang }}
-                            <v-radio v-model="selectedLang" :value="lang" color="#009966"></v-radio>
-                          </v-list-item-title> -->
+  <v-list-item-title class="d-flex " style="gap: 10px">
+    <span v-html="lang.icon"> </span> {{ lang.lang }}
+    <v-radio v-model="selectedLang" :value="lang" color="#009966"></v-radio>
+  </v-list-item-title> -->
 
                                                 <v-list-item v-for=" lang  in  langs " :key="lang.lang" :value="lang">
                                                     <v-list-item-title class="d-flex " style="gap: 10px">
@@ -49,15 +49,13 @@
                             </div>
                         </v-col>
 
-
-
                         <!-- ========================================================== -->
                         <v-col class="input-col-container" cols="6" :style="inputColStyle">
 
                             <div id="search" class="position-relative" style="width: 100%;">
 
                                 <input @click="showAlert" type="search" name="navSearch" id="navSearch"
-                                    style="width: 100%; height: 50px; border-radius: 10px; outline: none"
+                                    style="width: 100%; height: 60px; border-radius: 10px; outline: none"
                                     :placeholder="$t('uppernav.placeHolder')" class="py-3 px-5 bg-white" />
 
 
@@ -104,39 +102,35 @@
 
 
                                     <!-- <template v-if="cartItemCount >= 1">
-                    <v-badge overlap location="right top" color="#FFBD1F" offset-y="-32">
-                      <svg @click="showAlert" style="width: 28px; fill: #FFFFFF" viewBox="0 0 1024 1024"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path class="path1"
-                          d="M409.6 1024c-56.464 0-102.4-45.936-102.4-102.4s45.936-102.4 102.4-102.4S512 865.136 512 921.6 466.064 1024 409.6 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z">
-                        </path>
-                        <path class="path2"
-                          d="M768 1024c-56.464 0-102.4-45.936-102.4-102.4S711.536 819.2 768 819.2s102.4 45.936 102.4 102.4S824.464 1024 768 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z">
-                        </path>
-                        <path class="path3"
-                          d="M898.021 228.688C885.162 213.507 865.763 204.8 844.8 204.8H217.954l-5.085-30.506C206.149 133.979 168.871 102.4 128 102.4H76.8c-14.138 0-25.6 11.462-25.6 25.6s11.462 25.6 25.6 25.6H128c15.722 0 31.781 13.603 34.366 29.112l85.566 513.395C254.65 736.421 291.929 768 332.799 768h512c14.139 0 25.6-11.461 25.6-25.6s-11.461-25.6-25.6-25.6h-512c-15.722 0-31.781-13.603-34.366-29.11l-12.63-75.784 510.206-44.366c39.69-3.451 75.907-36.938 82.458-76.234l34.366-206.194c3.448-20.677-1.952-41.243-14.813-56.424zm-35.69 48.006l-34.366 206.194c-2.699 16.186-20.043 32.221-36.39 33.645l-514.214 44.714-50.874-305.246h618.314c5.968 0 10.995 2.054 14.155 5.782 3.157 3.73 4.357 9.024 3.376 14.912z">
-                        </path>
-                      </svg>
-                    </v-badge>
-                  </template>
+<v-badge overlap location="right top" color="#FFBD1F" offset-y="-32">
+<svg @click="showAlert" style="width: 28px; fill: #FFFFFF" viewBox="0 0 1024 1024"
+xmlns="http://www.w3.org/2000/svg">
+<path class="path1"
+  d="M409.6 1024c-56.464 0-102.4-45.936-102.4-102.4s45.936-102.4 102.4-102.4S512 865.136 512 921.6 466.064 1024 409.6 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z">
+</path>
+<path class="path2"
+  d="M768 1024c-56.464 0-102.4-45.936-102.4-102.4S711.536 819.2 768 819.2s102.4 45.936 102.4 102.4S824.464 1024 768 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z">
+</path>
+<path class="path3"
+  d="M898.021 228.688C885.162 213.507 865.763 204.8 844.8 204.8H217.954l-5.085-30.506C206.149 133.979 168.871 102.4 128 102.4H76.8c-14.138 0-25.6 11.462-25.6 25.6s11.462 25.6 25.6 25.6H128c15.722 0 31.781 13.603 34.366 29.112l85.566 513.395C254.65 736.421 291.929 768 332.799 768h512c14.139 0 25.6-11.461 25.6-25.6s-11.461-25.6-25.6-25.6h-512c-15.722 0-31.781-13.603-34.366-29.11l-12.63-75.784 510.206-44.366c39.69-3.451 75.907-36.938 82.458-76.234l34.366-206.194c3.448-20.677-1.952-41.243-14.813-56.424zm-35.69 48.006l-34.366 206.194c-2.699 16.186-20.043 32.221-36.39 33.645l-514.214 44.714-50.874-305.246h618.314c5.968 0 10.995 2.054 14.155 5.782 3.157 3.73 4.357 9.024 3.376 14.912z">
+</path>
+</svg>
+</v-badge>
+</template>
 <template v-else>
-                    <svg @click="showAlert" style="width: 28px; fill: #FFFFFF" viewBox="0 0 1024 1024"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path class="path1"
-                        d="M409.6 1024c-56.464 0-102.4-45.936-102.4-102.4s45.936-102.4 102.4-102.4S512 865.136 512 921.6 466.064 1024 409.6 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z">
-                      </path>
-                      <path class="path2"
-                        d="M768 1024c-56.464 0-102.4-45.936-102.4-102.4S711.536 819.2 768 819.2s102.4 45.936 102.4 102.4S824.464 1024 768 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z">
-                      </path>
-                      <path class="path3"
-                        d="M898.021 228.688C885.162 213.507 865.763 204.8 844.8 204.8H217.954l-5.085-30.506C206.149 133.979 168.871 102.4 128 102.4H76.8c-14.138 0-25.6 11.462-25.6 25.6s11.462 25.6 25.6 25.6H128c15.722 0 31.781 13.603 34.366 29.112l85.566 513.395C254.65 736.421 291.929 768 332.799 768h512c14.139 0 25.6-11.461 25.6-25.6s-11.461-25.6-25.6-25.6h-512c-15.722 0-31.781-13.603-34.366-29.11l-12.63-75.784 510.206-44.366c39.69-3.451 75.907-36.938 82.458-76.234l34.366-206.194c3.448-20.677-1.952-41.243-14.813-56.424zm-35.69 48.006l-34.366 206.194c-2.699 16.186-20.043 32.221-36.39 33.645l-514.214 44.714-50.874-305.246h618.314c5.968 0 10.995 2.054 14.155 5.782 3.157 3.73 4.357 9.024 3.376 14.912z">
-                      </path>
-                    </svg>
-                  </template> -->
-
-
-
-
+<svg @click="showAlert" style="width: 28px; fill: #FFFFFF" viewBox="0 0 1024 1024"
+xmlns="http://www.w3.org/2000/svg">
+<path class="path1"
+d="M409.6 1024c-56.464 0-102.4-45.936-102.4-102.4s45.936-102.4 102.4-102.4S512 865.136 512 921.6 466.064 1024 409.6 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z">
+</path>
+<path class="path2"
+d="M768 1024c-56.464 0-102.4-45.936-102.4-102.4S711.536 819.2 768 819.2s102.4 45.936 102.4 102.4S824.464 1024 768 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z">
+</path>
+<path class="path3"
+d="M898.021 228.688C885.162 213.507 865.763 204.8 844.8 204.8H217.954l-5.085-30.506C206.149 133.979 168.871 102.4 128 102.4H76.8c-14.138 0-25.6 11.462-25.6 25.6s11.462 25.6 25.6 25.6H128c15.722 0 31.781 13.603 34.366 29.112l85.566 513.395C254.65 736.421 291.929 768 332.799 768h512c14.139 0 25.6-11.461 25.6-25.6s-11.461-25.6-25.6-25.6h-512c-15.722 0-31.781-13.603-34.366-29.11l-12.63-75.784 510.206-44.366c39.69-3.451 75.907-36.938 82.458-76.234l34.366-206.194c3.448-20.677-1.952-41.243-14.813-56.424zm-35.69 48.006l-34.366 206.194c-2.699 16.186-20.043 32.221-36.39 33.645l-514.214 44.714-50.874-305.246h618.314c5.968 0 10.995 2.054 14.155 5.782 3.157 3.73 4.357 9.024 3.376 14.912z">
+</path>
+</svg>
+</template> -->
                                 </div>
                                 <div class="locale-changer">
                                     <select class="Lang-btn" v-model="$i18n.locale">
@@ -147,14 +141,11 @@
                                     </select>
                                 </div>
                                 <!-- <div>
-                  <a @click="toggleDirection" class="Lang-btn" href="#">EN</a>
-                </div> -->
+<a @click="toggleDirection" class="Lang-btn" href="#">EN</a>
+</div> -->
                             </div>
                         </v-col>
                         <!-- ==== -->
-
-
-
 
                         <div class="alt-burger-menu" style="gap: 15px ;margin-right: 70px; padding-bottom: 35px;">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -179,16 +170,14 @@
                     <!-- ================Second Row Nav -->
                     <!-- ===================================================================== -->
 
-                    <!-- <v-row class="darkgreen-nav mt-6 "
-                        style="width:100% ;height: 163px; background-color: var(--secNavColor) ;position: fixed; top: 92px; left: 12px;"> -->
-                    <v-row class="darkgreen-nav mt-6 py-11" style="width:100% ; background-color: var(--secNavColor) ;position: fixed;
+                    <v-row class="darkgreen-nav mt-6 py-8" style="width:100% ; background-color: var(--secNavColor) ;position: fixed;
     top: 92px;
     left: 12px;">
 
-                        <v-col cols="2"></v-col>
+                        <!-- <v-col cols="2"></v-col> -->
 
                         <!-- =====Second Col Second row ======= -->
-
+                        <!-- 
                         <v-col cols="8">
                             <div class="d-flex align-center text-white justify-space-between ga-8">
                                 <div class="d-flex ga-5">
@@ -211,15 +200,28 @@
                                     <p style="font-size: 24px; font-weight: 700;">الفاتورة</p>
                                 </div>
 
-
                             </div>
-                        </v-col>
+                        </v-col> -->
 
                         <!-- =====third Col Second row ======= -->
 
-                        <v-col cols="2"></v-col>
+                        <!-- <v-col cols="2"></v-col> -->
 
+                        <v-stepper>
+                            <v-stepper-header>
+                                <v-stepper-item title=" عنوان الشحن " value="1"></v-stepper-item>
+
+                                <v-divider></v-divider>
+
+                                <v-stepper-item title="الدفع" value="2"></v-stepper-item>
+
+                                <v-divider></v-divider>
+
+                                <v-stepper-item title="الفاتورة" value="3"></v-stepper-item>
+                            </v-stepper-header>
+                        </v-stepper>
                     </v-row>
+
                 </v-container>
             </v-app-bar>
 
@@ -302,12 +304,12 @@ const directionClass = computed(() => {
     return directionValue.value === 'rtl' ? 'rtl-class' : 'ltr-class';
 });
 
-const computedColStyle = computed(() => {
-    return locale.value === 'ar' ? 'margin-right: -37px;' : 'margin-left: 0';
-});
+// const computedColStyle = computed(() => {
+//     return locale.value === 'ar' ? 'margin-right: 0px;' : 'margin-left: 0';
+// });
 
 const computedParentStyle = computed(() => {
-    return locale.value === 'ar' ? 'margin-right: -28px;' : 'margin-left: -60px;';
+    return locale.value === 'ar' ? 'margin-right: 0;' : 'margin-left: -60px;';
 });
 
 const svgStyle = computed(() => {
@@ -331,7 +333,7 @@ const inputColStyle = computed(() => {
     return {
         'padding-right': locale.value === 'ar' ? '50px' : '0',
         'padding-left': locale.value === 'ar' ? '0' : '50px',
-        'margin-right': locale.value === 'ar' ? '15px' : '0',
+        // 'margin-right': locale.value === 'ar' ? '0' : '0',
     };
 });
 
@@ -360,14 +362,26 @@ onMounted(() => {
 
 
 <style scoped>
-.vl {
-    border-bottom: 4px solid var(--btnColor);
-    width: 288px;
-    margin-bottom: 10px;
-}
-
 .v-locale--is-ltr {
     direction: unset !important;
+}
+
+.v-application__wrap {
+    min-height: 20dvh !important;
+}
+
+.v-container {
+    max-width: none;
+}
+
+.numersStyle {
+    background-color: var(--btnColor);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: 700;
 }
 
 .cart-icon {
@@ -447,20 +461,72 @@ onMounted(() => {
 }
 
 
+.links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
 
+}
 
 .alt-burger-menu {
     display: none;
 }
 
-.numersStyle {
-    background-color: var(--btnColor);
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    border-radius: 50%;
-    font-size: 30px;
+/* ============== */
+.v-stepper-header,
+.v-stepper .v-sheet {
+    box-shadow: none;
+}
+
+.v-stepper.v-sheet {
+    width: 70%;
+    margin: auto;
+}
+
+/* ============= */
+.v-sheet {
+    background: none;
+}
+
+.v-divider {
+    display: block;
+    flex: 1 1 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    height: 4px;
+    max-height: 0px;
+    opacity: 1;
+    transition: inherit;
+    border-style: solid;
+    color: var(--btnColor);
+
+}
+
+.v-stepper-item {
+    color: #FFFFFF;
+    opacity: 1;
+    padding: 1rem;
+    font-size: 24px;
     font-weight: 700;
+}
+
+.v-stepper.v-sheet {
+    box-shadow: none;
+}
+
+.v-stepper-item__avatar.v-avatar {
+    background: var(--btnColor);
+    color: rgb(var(--v-theme-on-surface-variant));
+    font-size: 1.75rem;
+    margin-inline-end: 8px;
+    width: 35px !important;
+    height: 35px !important;
+}
+
+.v-stepper-header .v-divider {
+    margin: 0 20px;
 }
 
 
@@ -482,6 +548,16 @@ onMounted(() => {
         width: 90%;
         margin-right: 30px !important;
         /* margin-top: 10px !important; */
+    }
+
+    .links {
+        width: 700px;
+
+    }
+
+    .links a {
+        font-size: 12px;
+        margin-right: 2px;
     }
 
     .lang-column {
@@ -579,6 +655,16 @@ onMounted(() => {
         width: 200px !important;
         height: 20px !important;
         margin-right: 20px !important;
+    }
+
+    .links {
+        justify-content: start !important;
+        gap: 20px !important;
+        margin-right: 10px !important;
+    }
+
+    .links a {
+        margin-right: 0 !important;
     }
 
     .extra-link {

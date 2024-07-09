@@ -14,6 +14,7 @@
         </div>
 
         <div class="parent-all-article" style="margin-right: 15px;">
+
             <article class="fun-facts " v-for="(fact, index) in facts" :key="index"
                 :class="{ 'active-article': activeIndex === index }">
                 <h4 style=" color: #939393; font-weight: 700; margin-bottom: 20px;">{{ fact.title }}</h4>
@@ -32,10 +33,6 @@
                         {{
             fact.secItem }}</p>
                 </div>
-
-
-
-
 
                 <!-- ========section 2======= -->
                 <v-container>
@@ -255,14 +252,22 @@ const toggleTab = (index) => {
     direction: unset !important;
 }
 
+.v-container {
+    max-width: none;
+}
+
 .rate-section-phon-screen {
     display: none;
+}
+
+.v-btn.v-btn--density-compact {
+    height: calc(var(--v-btn-height) + px) !important;
 }
 
 .bottom-border {
     position: relative;
     z-index: -2;
-    width: 1150px;
+    width: 90%;
     border: 4px solid #F1F1F1;
     bottom: 14px;
     right: 7px;
@@ -270,7 +275,6 @@ const toggleTab = (index) => {
 
 .mybtn {
     all: unset;
-
     margin: .5rem;
     color: #3d4a59;
     display: inline-block;
@@ -313,7 +317,7 @@ const toggleTab = (index) => {
     right: 80px;
     margin-left: auto;
     transition: all 0.5s;
-    width: 1000px;
+    width: 80%;
 
 }
 
