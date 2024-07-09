@@ -1,14 +1,13 @@
 <template>
     <div :dir="$i18n.locale == 'ar' ? 'rtl' : 'ltr'">
-        <SecondNav />
+        <FirstHeadOnly />
 
         <slot />
         <Footer />
     </div>
 
 </template>
-<style>
-.v-application__wrap {
-    min-height: 40dvh !important;
-}
-</style>
+<script setup>
+// import FirstHeadOnly from '~/components/global/FirstHeadOnly.vue';
+
+</script>

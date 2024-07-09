@@ -175,51 +175,7 @@
 
 
                     </v-row>
-                    <!-- ===================================================================== -->
-                    <!-- ================Second Row Nav -->
-                    <!-- ===================================================================== -->
 
-                    <!-- <v-row class="darkgreen-nav mt-6 "
-                        style="width:100% ;height: 163px; background-color: var(--secNavColor) ;position: fixed; top: 92px; left: 12px;"> -->
-                    <v-row class="darkgreen-nav mt-6 py-11" style="width:100% ; background-color: var(--secNavColor) ;position: fixed;
-    top: 92px;
-    left: 12px;">
-
-                        <v-col cols="2"></v-col>
-
-                        <!-- =====Second Col Second row ======= -->
-
-                        <v-col cols="8">
-                            <div class="d-flex align-center text-white justify-space-between ga-8">
-                                <div class="d-flex ga-5">
-                                    <p class="numersStyle">
-                                        1</p>
-                                    <p style="font-size: 24px; font-weight: 700;">عنوان الشحن</p>
-                                </div>
-
-                                <div class="vl"></div>
-
-                                <div class="d-flex ga-3">
-                                    <p class="numersStyle">2</p>
-                                    <p style="font-size: 24px; font-weight: 700;">الدفع</p>
-                                </div>
-
-                                <div class="vl"></div>
-
-                                <div class="d-flex ga-3">
-                                    <p class="numersStyle">3</p>
-                                    <p style="font-size: 24px; font-weight: 700;">الفاتورة</p>
-                                </div>
-
-
-                            </div>
-                        </v-col>
-
-                        <!-- =====third Col Second row ======= -->
-
-                        <v-col cols="2"></v-col>
-
-                    </v-row>
                 </v-container>
             </v-app-bar>
 
@@ -360,14 +316,12 @@ onMounted(() => {
 
 
 <style scoped>
-.vl {
-    border-bottom: 4px solid var(--btnColor);
-    width: 288px;
-    margin-bottom: 10px;
-}
-
 .v-locale--is-ltr {
     direction: unset !important;
+}
+
+.v-application__wrap {
+    min-height: 20dvh !important;
 }
 
 .cart-icon {
@@ -447,20 +401,16 @@ onMounted(() => {
 }
 
 
+.links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
 
+}
 
 .alt-burger-menu {
     display: none;
-}
-
-.numersStyle {
-    background-color: var(--btnColor);
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    border-radius: 50%;
-    font-size: 30px;
-    font-weight: 700;
 }
 
 
@@ -482,6 +432,16 @@ onMounted(() => {
         width: 90%;
         margin-right: 30px !important;
         /* margin-top: 10px !important; */
+    }
+
+    .links {
+        width: 700px;
+
+    }
+
+    .links a {
+        font-size: 12px;
+        margin-right: 2px;
     }
 
     .lang-column {
@@ -579,6 +539,16 @@ onMounted(() => {
         width: 200px !important;
         height: 20px !important;
         margin-right: 20px !important;
+    }
+
+    .links {
+        justify-content: start !important;
+        gap: 20px !important;
+        margin-right: 10px !important;
+    }
+
+    .links a {
+        margin-right: 0 !important;
     }
 
     .extra-link {

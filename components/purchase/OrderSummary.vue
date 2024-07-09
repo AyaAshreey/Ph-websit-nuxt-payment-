@@ -65,3 +65,8 @@ const svgStyle = computed(() => {
     };
 });
 </script>
+<style scoped>
+input::placeholder {
+    color: #C5C5C5;
+}
+</style>

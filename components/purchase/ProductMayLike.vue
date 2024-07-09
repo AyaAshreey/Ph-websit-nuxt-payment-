@@ -181,7 +181,7 @@ const discountStyle = computed(() => ({
     color: 'white',
     fontWeight: '700',
     fontSize: '11px',
-    padding: '3px 12px',
+    padding: '1px 4px',
     borderRadius: '7px',
 }));
 </script>
