@@ -10,7 +10,10 @@
                             <div class="parent text-white d-flex justify-space-between align-center"
                                 :style="computedParentStyle">
                                 <!-- ////////////Logo   //////////////////-->
-                                <img class="nav-logo" src="@/assets/images/logo 1.png" alt="" />
+                                <NuxtLink to="/">
+                                    <img class="nav-logo" src="@/assets/images/logo 1.png" alt="" />
+                                </NuxtLink>
+
 
                                 <!-- ///////////////// الشحن الي ////////// -->
                                 <div class="lang-column">

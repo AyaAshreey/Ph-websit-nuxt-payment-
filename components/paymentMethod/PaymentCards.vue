@@ -89,7 +89,10 @@
 
         <!-- ================================= -->
         <div>
-            <form @submit.prevent="submitPayment">
+            <div id="payment-element" class="nes-input">
+            </div>
+
+            <!-- <form @submit.prevent="submitPayment">
                 <v-row>
                     <v-col cols="12">
                         <Input v-model="amount" type="text" placeholder="الاسم" class="bigInput py-3 px-5 bg-white"
@@ -105,39 +108,36 @@
 
                 <v-row class="mt-11">
                     <v-col cols="6">
-                        <Input type="text" class="py-3 px-5 bg-white bigInput" placeholder="MM/YY" />
+                        <Input type="number" class="py-3 px-5 bg-white bigInput" placeholder="MM/YY" />
                     </v-col>
                     <v-col cols="6">
-                        <Input type="text" placeholder="cvv" class="py-3 px-5 bg-white bigInput" />
+                        <Input type="password" placeholder="cvv" class="py-3 px-5 bg-white bigInput" />
                     </v-col>
                 </v-row>
 
                 <v-btn to="/PaymentSuccessful" class="payBtn mt-11">ادفع</v-btn>
-            </form>
+            </form> -->
+            <v-btn to="/PaymentSuccessful" class="payBtn mt-11">ادفع</v-btn>
         </div>
 
     </div>
 </template>
 <script setup>
-import { ref, computed } from 'vue';
+import { API } from "aws-amplify";
+import { Stripe, StripeElements, loadStripe } from "@stripe/stripe-js";
+
+import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 //payment nethod
 import { useRouter } from 'vue-router';
 
-const amount = ref('');
-const email = ref('');
 const router = useRouter();
-const submitPayment = async () => {
-    try {
-        const response = await $fetch('https://apitest.myfatoorah.com/', {
-            method: 'POST',
-            body: { amount: amount.value, email: email.value }
-        });
-        router.push(response.paymentUrl);
-    } catch (error) {
-        console.error('Payment initiation failed', error);
-    }
-};
+const config = useRuntimeConfig();
+
+onMounted(async () => {
+
+});
+// const handleSubmit = async (e: Event) => { };
 
 // ///////////////////
 const activeIndex = ref(0);

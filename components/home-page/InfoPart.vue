@@ -1,5 +1,5 @@
 <template>
-    <div class="container mb-3 text-start" style="width: 90%">
+    <div class="container mb-3 text-start">
         <div class="allTabs" :style="allTabsStyling">
             <button class="mybtn" :class="{ 'active-btn': activeIndex === 0 }" @click="toggleTab(0)">{{
             $t('infoPart.title1')

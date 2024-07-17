@@ -269,9 +269,12 @@ const detailColStyle = computed(() => ({
 }));
 
 const moreBrandStyle = computed(() => ({
-    'margin-left': locale.value === 'ar' ? '130px' : '0',
-    'margin-right': locale.value === 'ar' ? '0' : '110px',
+    // 'margin-left': locale.value === 'ar' ? '130px' : '0',
+    // 'margin-right': locale.value === 'ar' ? '0' : '110px',
     marginTop: '4px',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    'align-content': 'center'
 }));
 
 const evaluationStyle = computed(() => ({

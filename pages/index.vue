@@ -28,3 +28,12 @@ onMounted(async () => {
 });
 
 </script>
+<style scoped>
+.v-container {
+  max-width: none;
+}
+
+.v-application__wrap {
+  min-height: 10dvh !important;
+}
+</style>

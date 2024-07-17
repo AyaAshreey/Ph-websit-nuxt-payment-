@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-16" style="margin-top: 200px;">
+    <div class="mx-16">
         <v-container>
 
             <thank />
@@ -21,6 +21,12 @@
                 </v-col>
 
                 <v-col cols="4">
+                    <OrderSummary3 />
+                    <div class="text-center font-weight-medium mt-12" style="font-size: 24px">
+                        <NuxtLink to="/" style="color: #939393">
+                            إلغاء الطلب بالكامل
+                        </NuxtLink>
+                    </div>
 
                 </v-col>
             </v-row>
@@ -34,6 +40,8 @@ import OrderDetails from "~/components/PaymentResponse/OrderDetails.vue";
 import ShippingDetails from "~/components/PaymentResponse/ShippingDetails.vue";
 import taps from "~/components/PaymentResponse/taps.vue";
 import SentromCard from "~/components/PaymentResponse/SentromCard.vue";
+import OrderSummary3 from "~/components/PaymentResponse/OrderSummary3.vue";
+
 
 
 definePageMeta({

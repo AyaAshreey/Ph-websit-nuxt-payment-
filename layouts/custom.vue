@@ -7,7 +7,7 @@
     </div>
 
 </template>
-<style>
+<style scoped>
 .v-application__wrap {
     min-height: 40dvh !important;
 }
