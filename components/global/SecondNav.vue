@@ -415,6 +415,7 @@ onMounted(() => {
     width: 400px;
     height: 170px;
     border-radius: 15px;
+    z-index: 1000;
 }
 
 .alert-content {

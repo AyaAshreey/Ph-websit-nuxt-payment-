@@ -86,58 +86,9 @@
                 </svg>
             </div>
         </div>
-
-        <!-- ================================= -->
-        <div>
-            <div id="payment-element" class="nes-input">
-            </div>
-
-            <!-- <form @submit.prevent="submitPayment">
-                <v-row>
-                    <v-col cols="12">
-                        <Input v-model="amount" type="text" placeholder="الاسم" class="bigInput py-3 px-5 bg-white"
-                            required />
-                    </v-col>
-                </v-row>
-                <v-row>
-                    <v-col cols="12">
-                        <Input v-model="email" type="text" placeholder="رقم الكارت "
-                            class="bigInput py-3 px-5 bg-white mt-11" required />
-                    </v-col>
-                </v-row>
-
-                <v-row class="mt-11">
-                    <v-col cols="6">
-                        <Input type="number" class="py-3 px-5 bg-white bigInput" placeholder="MM/YY" />
-                    </v-col>
-                    <v-col cols="6">
-                        <Input type="password" placeholder="cvv" class="py-3 px-5 bg-white bigInput" />
-                    </v-col>
-                </v-row>
-
-                <v-btn to="/PaymentSuccessful" class="payBtn mt-11">ادفع</v-btn>
-            </form> -->
-            <v-btn to="/PaymentSuccessful" class="payBtn mt-11">ادفع</v-btn>
-        </div>
-
     </div>
 </template>
 <script setup>
-import { API } from "aws-amplify";
-import { Stripe, StripeElements, loadStripe } from "@stripe/stripe-js";
-
-import { ref, computed, onMounted } from 'vue';
-import { useI18n } from 'vue-i18n';
-//payment nethod
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-const config = useRuntimeConfig();
-
-onMounted(async () => {
-
-});
-// const handleSubmit = async (e: Event) => { };
 
 // ///////////////////
 const activeIndex = ref(0);
@@ -150,10 +101,6 @@ const toggleTab = (index) => {
 </script>
 
 <style scoped>
-.v-btn.v-btn--density-default {
-    height: calc(var(--v-btn-height) + 52px);
-}
-
 .paySVG {
     width: 173px;
     height: 87px;
@@ -163,44 +110,13 @@ const toggleTab = (index) => {
     display: block;
     margin-left: auto;
     margin-right: auto;
-
-
 }
 
 .paySVG:hover {
     cursor: pointer;
 }
 
-.bigInput {
-    width: 100%;
-    border-radius: 12px;
-    border: 1px solid #E5E5E5;
-
-    padding: 30px;
-    gap: 10px;
-    font-size: 24px;
-
-}
-
-.active-btn {
-    border: 5px solid var(--mainColor);
-
-}
-
-input::placeholder {
-    color: #939393;
-    font-size: 24px;
-    font-weight: 500;
-}
-
-.payBtn {
-    background-color: var(--mainColor);
-    width: 100%;
-    margin-top: 24px;
-    font-size: 32px;
-    color: white;
-    border-radius: 12px;
-    font-weight: 700;
-    padding: 30px
+.paySVG:checked {
+    border: 8px solid green;
 }
 </style>

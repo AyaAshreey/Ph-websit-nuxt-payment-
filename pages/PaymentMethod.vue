@@ -7,6 +7,7 @@
                         <p style="font-size: 32px; font-weight: 700;">طريقة الدفع</p>
                     </div>
                     <PaymentCards />
+                    <PaymentForm />
                 </v-col>
                 <!-- =================================== -->
                 <v-col cols="1">
@@ -24,6 +25,8 @@
 <script setup>
 import OrderSummary2 from "~/components/paymentMethod/OrderSummary2.vue";
 import PaymentCards from "~/components/paymentMethod/PaymentCards.vue";
+import PaymentForm from "~/components/paymentMethod/PaymentForm.vue";
+
 
 definePageMeta({
     layout: "custom"
@@ -32,6 +35,10 @@ definePageMeta({
 </script>
 
 <style>
+.v-application__wrap {
+    min-height: 40dvh !important;
+}
+
 .v-container {
     max-width: none;
 }

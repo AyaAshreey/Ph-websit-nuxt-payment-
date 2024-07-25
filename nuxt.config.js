@@ -3,9 +3,13 @@ import { defineNuxtConfig } from 'nuxt/config';
 
 
 export default defineNuxtConfig({
-  // plugins: [
-  //   '~/plugins/axios.js'
-  // ],
+  plugins: [
+    '~/plugins/vuex.js'
+  ],
+  buildModules: [
+    // https://go.nuxtjs.dev/vuetify
+    '@nuxtjs/vuetify',
+  ],
   components: true,
   devtools: { enabled: true },
   css: [
@@ -27,9 +31,9 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/i18n",
     "@pinia/nuxt",
-    "@nuxtjs/strapi",
     "vuetify-nuxt-module",
     "nuxt-swiper",
+
     // '@nuxtjs/vuex'
     // "pinia-plugin-persistedstate", //to save state
   ],
@@ -73,11 +77,28 @@ export default defineNuxtConfig({
     defaultLocale: "ar",
   },
   runtimeConfig: {
-    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
-    ENDPOINT_SECRET: process.env.ENDPOINT_SECRET,
     public: {
-      STRIPE_KEY: process.env.STRIPE_KEY
-    }
-  }
+      myfatoorahApiToken: process.env.MYFATOORAH_API_TOKEN,
+    },
+  },
+
+  head: {
+    titleTemplate: 'Murabba Nuxt Task',
+    // title: 'EradUninted',
+    htmlAttrs: {
+      lang: 'en',
+    },
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: '' },
+      { name: 'format-detection', content: 'telephone=no' },
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },],
+    script: [{ src: 'https://kit.fontawesome.com/9c831b27e0.js' }],
+    script: [{ src: 'https://sa.myfatoorah.com/cardview/v2/session.js' }],
+  },
+
+
 
 });

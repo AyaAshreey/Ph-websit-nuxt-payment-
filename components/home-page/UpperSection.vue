@@ -54,6 +54,7 @@
 
                                     <li @click="toggleHeart" class="mb-5 heart-icon"
                                         :class="{ 'red-heart': isHeartFilled }">
+
                                         <svg width="37" height="35" viewBox="0 0 55 53" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -225,8 +226,8 @@
                                             class="mr-0">mdi-chevron-down</v-icon>
                                     </span>
 
-                                    <v-btn @click="addToCart(item)" style="background: var(--btnColor);color: white;font-size: 17px;font-weight:
-                                        700;letter-spacing: revert;width: 82%;padding: 9px 70px">
+                                    <v-btn @click="addToCart(product)" style="background: var(--btnColor);color: white;font-size: 17px;font-weight:
+                                        700;letter-spacing: revert;width: 82%;padding: 11px 70px">
                                         {{ $t('button.firstBtn') }} </v-btn>
 
                                 </div>
@@ -244,7 +245,8 @@
 
 <script setup>
 import { computed, ref } from 'vue';
-import { useStore } from '@/store/index'; // Adjust the path according to your store file
+// import { useStore } from '@/store/index'; // Adjust the path according to your store file
+import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 
 // Setup the store and i18n
@@ -257,11 +259,11 @@ const isHeartFilled = ref(false);
 // Function to dispatch the addToCart action
 const addToCart = (product) => {
     console.log("product", product);
-    store.addToCart(product);
+    store.dispatch('addToCart', product);
 };
 
 // Computed properties for cart item count and styles
-const cartItemCount = computed(() => store.cartItemCount);
+const cartItemCount = computed(() => store.getters.cartItemCount);
 
 const detailColStyle = computed(() => ({
     'margin-right': locale.value === 'ar' ? '64px' : '0',
@@ -327,6 +329,10 @@ const toggleHeart = () => {
 
 
 <style scoped>
+.v-btn.v-btn--density-default {
+    height: calc(var(--v-btn-height) + px);
+}
+
 .v-locale--is-ltr {
     direction: unset;
 }

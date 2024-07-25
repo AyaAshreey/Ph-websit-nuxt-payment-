@@ -8,19 +8,21 @@
 
         <div class=" bg-white" style="border: 1px solid #C5C5C5; border-radius: 5px; ">
             <v-container>
-
                 <div class="d-flex" style="gap: 8px;">
                     <div class="d-flex position-relative">
                         <img src="../../assets/images/centrum-centrum-multigummies-150-units 1.png" alt="">
+                        <div @click="toggleHeart" class="mb-5 heart-icon" :class="{ 'red-heart': isHeartFilled }">
 
-                        <svg style="position: absolute; right: 0;" width="46" height="45" viewBox="0 0 46 45"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M5.88475 21.7468C3.87287 15.4656 6.22412 8.28623 12.8185 6.16185C16.2872 5.04248 20.116 5.70248 22.9997 7.87185C25.7279 5.76248 29.6972 5.04998 33.1622 6.16185C39.7566 8.28623 42.1229 15.4656 40.1129 21.7468C36.9816 31.7031 22.9997 39.3718 22.9997 39.3718C22.9997 39.3718 9.121 31.8193 5.88475 21.7468Z"
-                                stroke="#939393" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M30.5 12.5625C32.5063 13.2112 33.9237 15.0019 34.0944 17.1037" stroke="#939393"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                            <svg style="position: absolute; right: 0;" width="46" height="45" viewBox="0 0 46 45"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M5.88475 21.7468C3.87287 15.4656 6.22412 8.28623 12.8185 6.16185C16.2872 5.04248 20.116 5.70248 22.9997 7.87185C25.7279 5.76248 29.6972 5.04998 33.1622 6.16185C39.7566 8.28623 42.1229 15.4656 40.1129 21.7468C36.9816 31.7031 22.9997 39.3718 22.9997 39.3718C22.9997 39.3718 9.121 31.8193 5.88475 21.7468Z"
+                                    stroke="#939393" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M30.5 12.5625C32.5063 13.2112 33.9237 15.0019 34.0944 17.1037" stroke="#939393"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+
                     </div>
                     <div class="d-flex" style="gap: 350px;">
                         <div class="text-right " style="line-height: 29.48px; gap: 8px; ">
@@ -28,7 +30,6 @@
                             <p style="font-weight: 600;font-size: 14px;"> سنتروم</p>
                             <p style="color: #939393;font-weight: 400;font-size: 14px;">فيتامينات متعددة للطاقة - 30 قرص
                             </p>
-
 
                             <svg width="104" height="21" viewBox="0 0 104 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -48,8 +49,6 @@
                                     d="M92.2825 2.11573C92.6307 1.31285 93.7693 1.31285 94.1174 2.11573L95.762 5.9083C95.9069 6.24245 96.222 6.4714 96.5846 6.50595L100.7 6.89807C101.571 6.98109 101.923 8.06396 101.267 8.64318L98.168 11.3792C97.895 11.6203 97.7746 11.9907 97.8538 12.3463L98.7525 16.3812C98.9428 17.2354 98.0216 17.9046 97.2681 17.4597L93.7084 15.3581C93.3947 15.173 93.0052 15.173 92.6916 15.3581L89.1319 17.4597C88.3783 17.9046 87.4571 17.2354 87.6474 16.3812L88.5461 12.3463C88.6253 11.9907 88.5049 11.6203 88.2319 11.3792L85.1332 8.64318C84.4772 8.06396 84.829 6.98109 85.7002 6.89807L89.8153 6.50595C90.1779 6.4714 90.493 6.24245 90.6379 5.9083L92.2825 2.11573Z"
                                     fill="#FEAE6F" />
                             </svg>
-
-
 
                             <p style="color: #939393; font-size: 14px;"> 80 ر.س</p>
                             <div class="d-flex ">
@@ -93,14 +92,17 @@
                     <div class="d-flex position-relative">
                         <img src="../../assets/images/centrum-centrum-multigummies-150-units 1.png" alt="">
 
-                        <svg style="position: absolute; right: 0;" width="46" height="45" viewBox="0 0 46 45"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M5.88475 21.7468C3.87287 15.4656 6.22412 8.28623 12.8185 6.16185C16.2872 5.04248 20.116 5.70248 22.9997 7.87185C25.7279 5.76248 29.6972 5.04998 33.1622 6.16185C39.7566 8.28623 42.1229 15.4656 40.1129 21.7468C36.9816 31.7031 22.9997 39.3718 22.9997 39.3718C22.9997 39.3718 9.121 31.8193 5.88475 21.7468Z"
-                                stroke="#939393" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M30.5 12.5625C32.5063 13.2112 33.9237 15.0019 34.0944 17.1037" stroke="#939393"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                        <div @click="toggleHeart" class="mb-5 heart-icon" :class="{ 'red-heart': isHeartFilled }">
+                            <svg style="position: absolute; right: 0;" width="46" height="45" viewBox="0 0 46 45"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M5.88475 21.7468C3.87287 15.4656 6.22412 8.28623 12.8185 6.16185C16.2872 5.04248 20.116 5.70248 22.9997 7.87185C25.7279 5.76248 29.6972 5.04998 33.1622 6.16185C39.7566 8.28623 42.1229 15.4656 40.1129 21.7468C36.9816 31.7031 22.9997 39.3718 22.9997 39.3718C22.9997 39.3718 9.121 31.8193 5.88475 21.7468Z"
+                                    stroke="#939393" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M30.5 12.5625C32.5063 13.2112 33.9237 15.0019 34.0944 17.1037" stroke="#939393"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+
                     </div>
                     <div class="d-flex" style="gap: 350px;">
                         <div class="text-right " style="line-height: 29.48px; gap: 8px; ">
@@ -108,7 +110,6 @@
                             <p style="font-weight: 600;font-size: 14px;"> سنتروم</p>
                             <p style="color: #939393;font-weight: 400;font-size: 14px;">فيتامينات متعددة للطاقة - 30 قرص
                             </p>
-
 
                             <svg width="104" height="21" viewBox="0 0 104 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -173,6 +174,11 @@ import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 const { locale } = useI18n();
 
+const isHeartFilled = ref(false);
+// Method to toggle the heart fill state
+const toggleHeart = () => {
+    isHeartFilled.value = !isHeartFilled.value;
+};
 
 const discountStyle = computed(() => ({
     'margin-right': locale.value === 'ar' ? '15px' : '0',
@@ -185,3 +191,8 @@ const discountStyle = computed(() => ({
     borderRadius: '7px',
 }));
 </script>
+<style scoped>
+.red-heart path {
+    fill: red;
+}
+</style>

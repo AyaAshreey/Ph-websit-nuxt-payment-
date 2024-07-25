@@ -1,202 +1,304 @@
-<!-- OLD SWIPER -->
 <template>
-    <div class="products-swiper" style="margin-top: 200px;">
-        >
-        <Swiper class="swp-class pb-9 px-5" :modules="modules" :slides-per-view="calculateSlidesPerView"
-            :space-between="26" :navigation="{ prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' }"
-            :autoplay="{ delay: 2000, pauseOnMouseEnter: true, disableOnInteraction: false }" :loop="true"
-            style="width: 86%;">
-
-
-            <swiper-slide v-for="item in products" :key="item.id">
-                <v-card elevation="0" class="pb-5"
-                    style="border: 1px solid #C5C5C5; padding: 16px 0px 32px 0px; gap: 5px; border-radius: 10px;">
-                    <v-hover v-slot="{ isHovering, props }">
-
-
-                        <div class="img-parent" style="height: 200px; overflow: hidden;">
-                            <img :src="showenItem[item.title] ? showenItem[item.title] : item.thumbnail" alt=""
-                                class="w-100"
-                                :style="'height: 200px; transition: 0.5s all ease-in-out; scale:' + (isHovering ? 1.05 : 1) + '; cursor: pointer;'"
-                                v-bind="props" />
-                        </div>
-                    </v-hover>
-                    <v-card-text class="pl-0 pb-1">
-                        <h4>{{ item.title }}</h4>
-                        {{ item.description.length <= 57 ? item.description : item.description.substring(0, 57) }}
-                            </v-card-text>
-                            <v-rating v-model="item.rating" half-increments readonly color="yellow-darken-2"
-                                density="compact" size="x-small" />
-                            <v-card-text class="pl-0 pt-0">
-                                <del>${{ item.price }}</del> From
-                                <span class="text-red" style="font-weight: 900; font-size: 16px;">
-                                    ${{ Math.ceil(item.price - item.price * (item.discountPercentage / 100)) }}
-                                </span>
-                            </v-card-text>
-                            <v-btn-toggle v-model="showenItem[item.title]" mandatory>
-                                <v-btn v-for="(pic, i) in item.images" :value="pic" :key="i" size="x-small"
-                                    rounded="xl">
-                                    <img :src="pic" width="30" height="30"
-                                        style="border-radius: 50%; border: 1px solid gray;" alt="" />
-                                </v-btn>
-                            </v-btn-toggle>
-                            <div class="mt-5">
-                                <v-btn @click="addToCart(item)" density="compact" class="py-2 px-12"
-                                    style="letter-spacing: revert; text-transform: none;background-color: #FF9900; font-weight: 700;font-size: 16px; color: #ffffff;width: 40%; border-radius: 14px;">
-                                    <svg style="width: 20px; fill: #ffffff; margin-left: 5px;" viewBox="0 0 1024 1024"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path class="path1"
-                                            d="M409.6 1024c-56.464 0-102.4-45.936-102.4-102.4s45.936-102.4 102.4-102.4S512 865.136 512 921.6 466.064 1024 409.6 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z" />
-                                        <path class="path2"
-                                            d="M768 1024c-56.464 0-102.4-45.936-102.4-102.4S711.536 819.2 768 819.2s102.4 45.936 102.4 102.4S824.464 1024 768 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z" />
-                                        <path class="path3"
-                                            d="M898.021 228.688C885.162 213.507 865.763 204.8 844.8 204.8H217.954l-5.085-30.506C206.149 133.979 168.871 102.4 128 102.4H76.8c-14.138 0-25.6 11.462-25.6 25.6s11.462 25.6 25.6 25.6H128c15.722 0 31.781 13.603 34.366 29.112l85.566 513.395C254.65 736.421 291.929 768 332.799 768h512c14.139 0 25.6-11.461 25.6-25.6s-11.461-25.6-25.6-25.6h-512c-15.722 0-31.781-13.603-34.366-29.11l-12.63-75.784 510.206-44.366c39.69-3.451 75.907-36.938 82.458-76.234l34.366-206.194c3.448-20.677-1.952-41.243-14.813-56.424zm-35.69 48.006l-34.366 206.194c-2.699 16.186-20.043 32.221-36.39 33.645l-514.214 44.714-50.874-305.246h618.314c5.968 0 10.995 2.054 14.155 5.782 3.157 3.73 4.357 9.024 3.376 14.912z" />
-                                    </svg>
-                                    {{ $t('button.slidBtn') }}
-                                </v-btn>
+    <div class="upper-section mb-12 mt-8 mx-16">
+        <v-container>
+            <v-row>
+                <v-col cols="12" sm="12" md="12" lg="4">
+                    <div class="title d-flex align-center mr-3" style="gap: 4px;">
+                        <h3 style="color: #939393; font-weight: 500;">{{ $t('upperSec.main') }} </h3>
+                        <v-icon style="color: #939393; font-weight: 500;">mdi-chevron-left</v-icon>
+                        <h3 style="font-weight: 700;">{{ $t('upperSec.vitamin') }}</h3>
+                    </div>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="12" sm="12" md="12" lg="2" class="pl-0">
+                    <v-row justify="center">
+                        <v-col cols="12">
+                            <div class="small-potiles">
+                                <ul class="potilss" style="list-style: none">
+                                    <li>
+                                        <img src="../../assets/images/centrum-centrum-multigummies-150-units 4s-centrum.png"
+                                            alt="" style="width: 111px; height: 122.75px;" />
+                                    </li>
+                                    <li>
+                                        <img src="../../assets/images/centrum-centrum-multigummies-150-units 4s-centrum.png"
+                                            alt="" style="width: 111px; height: 122.75px;" />
+                                    </li>
+                                    <li>
+                                        <img src="../../assets/images/centrum-centrum-multigummies-150-units 4s-centrum.png"
+                                            alt="" style="width: 111px; height: 122.75px;" />
+                                    </li>
+                                </ul>
                             </div>
-                </v-card>
-            </swiper-slide>
-        </Swiper>
-        <!-- SVG Arrows -->
-        <!-- <div class="swiper-button-prev">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-chevron-left">
-                <polyline points="15 18 9 12 15 6" />
-            </svg>
-        </div> -->
-        <!-- <div class="swiper-button-next">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6" />
-            </svg>
-        </div> -->
+                        </v-col>
+                    </v-row>
+                </v-col>
+                <v-col cols="12" sm="12" md="8" lg="4" class="pr-0">
+                    <v-row justify="center">
+                        <v-col cols="12">
+                            <div class="big-bottel" style="position: relative;">
+                                <ul style="list-style: none; position: absolute; right: 30px; top: 20px;">
+                                    <li @click="toggleHeart" class="mb-5 heart-icon"
+                                        :class="{ 'red-heart': isHeartFilled }">
+                                        <svg width="37" height="35" viewBox="0 0 55 53" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M2.77789 25.4121C-0.128154 16.3392 3.2681 5.969 12.7933 2.90045C17.8037 1.28358 23.3341 2.23691 27.4996 5.37045C31.4402 2.32358 37.1737 1.29441 42.1787 2.90045C51.7039 5.969 55.1218 16.3392 52.2185 25.4121C47.6956 39.7934 27.4996 50.8704 27.4996 50.8704C27.4996 50.8704 7.45247 39.9613 2.77789 25.4121Z"
+                                                stroke="#939393" stroke-width="3" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M38.3333 12.1459C41.2312 13.083 43.2787 15.6694 43.5251 18.7055"
+                                                stroke="#939393" stroke-width="3" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </li>
+                                    <li class="share-icon">
+                                        <svg width="37" height="35" viewBox="0 0 50 56" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M40.6662 54.2222C42.7437 54.2222 44.7361 53.3969 46.2052 51.9279C47.6742 50.4588 48.4995 48.4664 48.4995 46.3889C48.4995 44.3113 47.6742 42.3189 46.2052 40.8499C44.7361 39.3808 42.7437 38.5555 40.6662 38.5555C38.5886 38.5555 36.5962 39.3808 35.1272 40.8499C33.6581 42.3189 32.8328 44.3113 32.8328 46.3889C32.8328 48.4664 33.6581 50.4588 35.1272 51.9279C36.5962 53.3969 38.5886 54.2222 40.6662 54.2222ZM40.6662 17.6667C42.7437 17.6667 44.7361 16.8414 46.2052 15.3723C47.6742 13.9033 48.4995 11.9109 48.4995 9.83333C48.4995 7.7558 47.6742 5.76336 46.2052 4.29433C44.7361 2.8253 42.7437 2 40.6662 2C38.5886 2 36.5962 2.8253 35.1272 4.29433C33.6581 5.76336 32.8328 7.7558 32.8328 9.83333C32.8328 11.9109 33.6581 13.9033 35.1272 15.3723C36.5962 16.8414 38.5886 17.6667 40.6662 17.6667ZM9.33285 35.9444C11.4104 35.9444 13.4028 35.1191 14.8718 33.6501C16.3409 32.1811 17.1662 30.1886 17.1662 28.1111C17.1662 26.0336 16.3409 24.0411 14.8718 22.5721C13.4028 21.1031 11.4104 20.2778 9.33285 20.2778C7.25532 20.2778 5.26288 21.1031 3.79384 22.5721C2.32481 24.0411 1.49951 26.0336 1.49951 28.1111C1.49951 30.1886 2.32481 32.1811 3.79384 33.6501C5.26288 35.1191 7.25532 35.9444 9.33285 35.9444V35.9444Z"
+                                                stroke="#939393" stroke-width="3" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M34.1364 13.75L15.8586 24.1944M15.8586 32.0278L34.1364 42.4722"
+                                                stroke="#939393" stroke-width="3" />
+                                        </svg>
+                                    </li>
+                                </ul>
+                                <span class="glass-victor"
+                                    style="list-style: none; position: absolute; left: 30px; bottom: 20px;">
+                                    <svg width="40" height="46" viewBox="0 0 56 56" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.4667 27.3H33.1333" stroke="#939393" stroke-width="3"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M27.3 33.1333V21.4667" stroke="#939393" stroke-width="3"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M26.8333 49C39.0756 49 49 39.0756 49 26.8333C49 14.591 39.0756 4.66666 26.8333 4.66666C14.591 4.66666 4.66663 14.591 4.66663 26.8333C4.66663 39.0756 14.591 49 26.8333 49Z"
+                                            stroke="#939393" stroke-width="3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M51.3333 51.3333L46.6666 46.6667" stroke="#939393" stroke-width="3"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <div class="py-15 px-15" style="border: 1px solid #E5E5E5; border-radius: 7px;">
+                                    <img class=""
+                                        src="../../assets/images/centrum-centrum-multigummies-150-units 3big-centum.png"
+                                        alt="" style="width: 100%;" />
+                                </div>
+                            </div>
+                        </v-col>
+                    </v-row>
+                </v-col>
+                <v-col cols="12" sm="12" md="12" lg="5" :style="detailColStyle">
+                    <v-row justify="center">
+                        <v-col cols="12">
+                            <div class="contain-thid-part">
+                                <div class="first-part" style="border: 2px solid #C5C5C5; border-radius: 10px;">
+                                    <div class="d-flex justify-space-between">
+                                        <img src="../../assets/images/Rectangle 4409.png" alt=""
+                                            style="width: 100px;" />
+                                        <div class="more-brand" :style="moreBrandStyle">
+                                            <p style="font-weight: 700;">ORIGINAL 100%</p>
+                                            <a href="#" style="color: #939393;">المزيد من هذه الماركة</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="second-part mt-3">
+                                    <div class="d-flex justify-space-between align-center">
+                                        <p style="font-weight: 700; font-size: 18px; line-height: 34.13px;">سنتروم</p>
+                                        <p
+                                            style="color: var(--mainColor); font-weight: 500; font-size: 16px; line-height: 26.82px;">
+                                            اكسب 10 نقاط
+                                        </p>
+                                    </div>
+                                    <p
+                                        style="text-align: right; color: #939393; font-weight: 400; font-size: 18px; line-height: 29.26px;">
+                                        فيتامينات متعددة للطاقة - 30 قرص
+                                    </p>
+                                </div>
+                                <div class="star d-flex mt-3">
+                                    <div
+                                        style="background-color: var(--mainColor); width: 60px; border-radius: 5px; padding: 2px 4px;">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <rect x="0.499878" y="0.5" width="17" height="17"
+                                                fill="url(#pattern0_385_82)" />
+                                            <defs>
+                                                <pattern id="pattern0_385_82" patternContentUnits="objectBoundingBox"
+                                                    width="1" height="1">
+                                                    <use xlink:href="#image0_385_82" transform="scale(0.0588235)" />
+                                                </pattern>
+                                                <image id="image0_385_82" width="17" height="17"
+                                                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAAXNSR0IArs4c6QAAAQFJREFUOE+dk31RA0EUw39xAA6QAA6KAooDqgBQ0KKAogAJFAd1gASQgIMwubnt3Ndeh3szN/vHvstL8rLiTNl+AA6SfmutmsOwfQV8A2tJn0tB3oEwOUq6XQoSFmGTuqxJqsqxvQY+OtN3kl6m2JxAWv2lJ9Mf40Xnpxh7D+RsTJb005y2t8Du3JZm7g8NE9uvwNMCoCOw6cr5L6O9pOdGTne67evWzLKRKXLxIya/lcvRdtqEJh+1OjGYAykBq4GMgjfF5AuIrLnqBW/oSXkrBSDuZ/2Jfr5Svbc0BElj5IzMs30H7Ntn0PNlCBKAsNmUNA62dwEkCitJN1VjFwSOP5t6X9usa+c4AAAAAElFTkSuQmCC" />
+                                            </defs>
+                                        </svg>
+                                        <span style="color: white; font-weight: 700; margin-right: 4px;">4.5</span>
+                                    </div>
+                                    <a href="" :style="evaluationStyle">245 تقييمات </a>
+                                </div>
+                                <div class="pro-num text-start mt-3" style="font-size: 18px; font-weight: 500;">
+                                    <p>رقم المنتج : 45099</p>
+                                </div>
+                                <div class="price-before text-start mt-3" style="color: #939393; font-weight: 500;">
+                                    <p>قبل : <del>1400.00</del> ر.س</p>
+                                </div>
+                                <div class="price-now text-start mt-3">
+                                    <p style="font-weight: 700; font-size: 16px; color: black;">
+                                        الآن : 1300.00 ر.س
+                                        <span style="color: #939393;">(شامل القيمة المضافة) </span>
+                                    </p>
+                                </div>
+                                <div class="offer text-start mt-3 d-flex">
+                                    <p> وفرت 130.00 ر.س </p>
+                                    <span :style="discountStyle">خصم 15%</span>
+                                </div>
+                                <div class="parent-box mt-10">
+                                    <v-row class="squars d-flex">
+                                        <v-col cols="4">
+                                            <div style="position: relative;">
+                                                <div class="upper-box" :style="upperBoxStyle">
+                                                    <p style="font-weight: 600;"> افضل قيمة </p>
+                                                </div>
+                                                <div class="first-box" :style="firstBoxStyle">
+                                                    <p> 3 عبوات</p>
+                                                    <p>
+                                                        1900 ر.س <span style="color: #C5C5C5;"> 2000 ر.س</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </v-col>
+                                        <v-col cols="4">
+                                            <div class="small-box" :style="smallBoxStyle">
+                                                <p> 6 عبوات</p>
+                                                <p>
+                                                    1900 ر.س <span style="color: #C5C5C5;"> 2000 ر.س </span>
+                                                </p>
+                                            </div>
+                                        </v-col>
+                                        <v-col cols="4">
+                                            <div class="small-box">
+                                                <p> 9 عبوات</p>
+                                                <p>
+                                                    1900 ر.س <span style="color: #C5C5C5;"> 2000 ر.س </span>
+                                                </p>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                </div>
+                                <div class="btn-input d-flex mt-5">
+                                    <span class="btn-icon d-flex" :style="btnIconStyle">
+                                        <input class="input-quantity" dir="rtl" id="input-quantity" min="1" value="1"
+                                            type="number" />
+                                        <v-icon style="height: 24px; font-size: 18px; color: #939393;"
+                                            class="mr-0">mdi-chevron-down</v-icon>
+                                    </span>
+                                    <v-btn @click="addToCart(product)" style="
+                        background: var(--btnColor);
+                        color: white;
+                        font-size: 17px;
+                        font-weight: 700;
+                        letter-spacing: revert;
+                        width: 82%;
+                        padding: 9px 70px;
+                      ">
+                                        {{ $t('button.firstBtn') }}
+                                    </v-btn>
+                                </div>
+                            </div>
+                        </v-col>
+                    </v-row>
+                </v-col>
+            </v-row>
+        </v-container>
     </div>
 </template>
 
-<!-- <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
-import { useI18n } from 'vue-i18n';
+<script setup>
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/swiper-bundle.css';
-import SwiperCore, { Navigation, Autoplay } from 'swiper';
+import { useI18n } from 'vue-i18n';
 
-// Define props
-const props = defineProps({
-    products: {
-        type: Array,
-        required: true
-    }
-});
-
-// Define refs and computed properties
-const modules = ref([Navigation, Autoplay]);
-const screenWidth = ref(0);
-const showenItem = ref({});
-
-const { t, locale } = useI18n();
+// Setup the store and i18n
 const store = useStore();
+const { locale } = useI18n();
 
-const cartItemCount = computed(() => store.getters.cartItemCount);
+// Define a ref for the heart fill state
+const isHeartFilled = ref(false);
 
-const similarStyling = computed(() => ({
-    'margin-right': locale.value === 'ar' ? '100px' : '0',
-    'margin-left': locale.value === 'ar' ? '0' : '100px',
-    fontWeight: '700',
-    color: '#000000',
-    fontSize: '30px'
-}));
-
-const showMoreStyling = computed(() => ({
-    'margin-right': locale.value === 'ar' ? '0' : '100px',
-    'margin-left': locale.value === 'ar' ? '100px' : '0',
-    color: '#939393',
-    fontSize: '20px'
-}));
-
-// Methods
+// Function to dispatch the addToCart action
 const addToCart = (product) => {
+    console.log("product", product);
     store.dispatch('addToCart', product);
 };
 
-const updateScreenWidth = () => {
-    screenWidth.value = window.innerWidth;
+// Assuming you have a product defined in your script setup
+const product = ref({
+    id: 1,
+    name: 'Centrum Multivitamins',
+    price: 1300,
+    image: '../../assets/images/centrum-centrum-multigummies-150-units 4s-centrum.png',
+    // add other necessary product details here
+});
+
+// Computed properties for cart item count and styles
+const cartItemCount = computed(() => store.getters.cartItemCount);
+
+const detailColStyle = computed(() => ({
+    'margin-right': locale.value === 'ar' ? '64px' : '0',
+    'margin-left': locale.value === 'ar' ? '0' : '64px',
+}));
+
+const moreBrandStyle = computed(() => ({
+    marginTop: '4px',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    'align-content': 'center'
+}));
+
+const evaluationStyle = computed(() => ({
+    color: 'var(--mainColor)',
+    fontWeight: '400',
+    fontSize: '16px',
+    'margin-right': locale.value === 'ar' ? '10px' : '0',
+    'margin-left': locale.value === 'ar' ? '0' : '10px',
+}));
+
+const discountStyle = computed(() => ({
+    'margin-right': locale.value === 'ar' ? '15px' : '0',
+    'margin-left': locale.value === 'ar' ? '0' : '15px',
+    backgroundColor: 'rgb(229, 62, 62)',
+    color: 'white',
+    fontWeight: '700',
+    fontSize: '13px',
+    padding: '3px 5px',
+    borderRadius: '5px',
+}));
+
+const btnIconStyle = computed(() => ({
+    border: '1px solid #E5E5E5',
+    width: '60px',
+    padding: '6px',
+    'margin-left': locale.value === 'ar' ? '30px' : '0',
+    borderRadius: '8px',
+    'margin-right': locale.value === 'ar' ? '0' : '30px',
+}));
+
+const smallBoxStyle = computed(() => ({
+    'margin-left': locale.value === 'ar' ? '12px' : '0',
+    'margin-right': locale.value === 'ar' ? '0' : '12px',
+}));
+
+const firstBoxStyle = computed(() => ({
+    'margin-left': locale.value === 'ar' ? '12px' : '0',
+    'margin-right': locale.value === 'ar' ? '0' : '12px',
+}));
+
+const upperBoxStyle = computed(() => ({
+    right: locale.value === 'ar' ? '4px' : '16px',
+}));
+
+// Method to toggle the heart fill state
+const toggleHeart = () => {
+    isHeartFilled.value = !isHeartFilled.value;
 };
-
-const calculateSlidesPerView = computed(() => {
-    if (screenWidth.value >= 1366) {
-        return 4.2;
-    } else if (screenWidth.value >= 834) {
-        return 2.2;
-    } else {
-        return 1.2;
-    }
-});
-
-// Lifecycle hooks
-onMounted(() => {
-    screenWidth.value = window.innerWidth;
-    window.addEventListener('resize', updateScreenWidth);
-});
-
-onBeforeUnmount(() => {
-    window.removeEventListener('resize', updateScreenWidth);
-});
-</script> -->
-<style scoped>
-.swiper-button-prev,
-.swiper-button-next {
-    position: absolute;
-    top: 57%;
-    transform: translateY(-50%);
-    z-index: 1000;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.swiper-button-prev {
-    left: 40px;
-    width: 60px;
-}
-
-.swiper-button-next {
-    right: 40px;
-    width: 60px;
-}
-
-.swiper-button-prev svg,
-.swiper-button-next svg {
-    width: 100%;
-    height: 100%;
-}
-
-.swiper-button-prev::after,
-.swiper-button-next::after {
-    display: none;
-}
-
-@media (max-width: 375px) {
-    .titl {
-        width: 370px !important;
-    }
-
-    .titl h3 {
-        margin-right: 40px !important;
-        font-size: 15px !important;
-    }
-
-    .titl a {
-        font-size: 13px !important;
-        margin-right: 40px !important;
-        display: contents;
-        text-decoration-line: underline;
-    }
-
-    .products-swiper {
-        margin-top: 90px !important;
-    }
-}
-</style>
+</script>
