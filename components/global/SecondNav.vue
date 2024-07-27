@@ -6,7 +6,7 @@
                 <v-container class="mx-8">
                     <v-row class="first-nav p-2">
 
-                        <v-col cols="3" class="ps-8 " :style="computedColStyle">
+                        <v-col cols="3" class="ps-8 ">
                             <div class="parent text-white d-flex justify-space-between align-center"
                                 :style="computedParentStyle">
                                 <!-- ////////////Logo   //////////////////-->
@@ -138,7 +138,7 @@ d="M898.021 228.688C885.162 213.507 865.763 204.8 844.8 204.8H217.954l-5.085-30.
                                     <select class="Lang-btn" v-model="$i18n.locale">
                                         <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`"
                                             :value="locale">{{
-                            locale }}
+                                    locale }}
                                         </option>
                                     </select>
                                 </div>
@@ -305,10 +305,6 @@ const direction = computed(() => directionValue.value);
 const directionClass = computed(() => {
     return directionValue.value === 'rtl' ? 'rtl-class' : 'ltr-class';
 });
-
-// const computedColStyle = computed(() => {
-//     return locale.value === 'ar' ? 'margin-right: 0px;' : 'margin-left: 0';
-// });
 
 const computedParentStyle = computed(() => {
     return locale.value === 'ar' ? 'margin-right: 0;' : 'margin-left: -60px;';

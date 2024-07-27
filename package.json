@@ -19,6 +19,8 @@
     "@vueuse/core": "^10.11.0",
     "aws-amplify": "^6.4.0",
     "axios": "^1.7.2",
+    "consola": "^3.2.3",
+    "defu": "^6.1.4",
     "nuxt": "^3.11.2",
     "nuxt-swiper": "^1.2.2",
     "pinia": "^2.1.7",

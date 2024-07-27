@@ -6,7 +6,7 @@
                 <v-container class="mx-8">
                     <v-row class="first-nav p-2">
 
-                        <v-col cols="3" class="ps-8 " :style="computedColStyle">
+                        <v-col cols="3" class="ps-8 " >
                             <div class="parent text-white d-flex justify-space-between align-center"
                                 :style="computedParentStyle">
                                 <!-- ////////////Logo   //////////////////-->
@@ -325,9 +325,8 @@ const directionClass = computed(() => {
     return directionValue.value === 'rtl' ? 'rtl-class' : 'ltr-class';
 });
 
-// const computedColStyle = computed(() => {
-//     return locale.value === 'ar' ? 'margin-right: 0px;' : 'margin-left: 0';
-// });
+
+
 
 const computedParentStyle = computed(() => {
     return locale.value === 'ar' ? 'margin-right: 0;' : 'margin-left: -60px;';

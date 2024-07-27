@@ -29,8 +29,6 @@
 
                     <v-card-title>Tonight's availability</v-card-title>
 
-
-
                     <v-card-actions>
                         <v-btn @click="addToCart(item)" density="compact"
                             style="letter-spacing: revert; background-color: #FF9900; font-weight: 700;font-size: 16px; color: #ffffff;width: 266px; border-radius: 14px; padding: 11px 0px;">

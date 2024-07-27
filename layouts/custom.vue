@@ -11,4 +11,8 @@
 .v-application__wrap {
     min-height: 40dvh !important;
 }
+
+.v-container {
+    max-width: none;
+}
 </style>

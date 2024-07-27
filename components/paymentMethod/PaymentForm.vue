@@ -1,70 +1,123 @@
 <template>
-    <div class="paymentForm mt-12">
+    <div>
         <div>
-            <!-- <div id="payment-element" class="nes-input">
-            </div> -->
-
-            <form @submit.prevent="submitPayment">
-                <v-row>
-                    <v-col cols="12">
-                        <v-text-field label="Name" variant="outlined" v-model="name" required></v-text-field>
-                    </v-col>
-                </v-row>
-                <v-row>
-                    <v-col cols="12">
-                        <v-text-field v-model="cardNumber" variant="outlined" type="text" placeholder="رقم الكارت "
-                            required>
-                        </v-text-field>
-                    </v-col>
-                </v-row>
-
-                <v-row class="mt-11">
-                    <v-col cols="6">
-                        <v-text-field variant="outlined" type="number" placeholder="MM/YY">
-                        </v-text-field>
-                    </v-col>
-                    <v-col cols="6">
-                        <v-text-field variant="outlined" type="password" placeholder="cvv"></v-text-field>
-                    </v-col>
-                </v-row>
-
-                <v-btn to="/PaymentSuccessful" class="payBtn mt-11">ادفع</v-btn>
-            </form>
+            <div id="card-element"></div>
         </div>
+        <v-btn @click="submit" class="payBtn">ادفع</v-btn>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
-const name = ref('');
-const cardNumber = ref('');
-const expiryDate = ref('');
-const cvc = ref('');
-const paymentUrl = ref('');
+const countryCode = 'KWT';
+const sessionId = '00b2a7b2-2064-4758-95ee-3815e6ab024d';
+const scriptLoaded = ref(false);
 
-const handlePayment = async () => {
-    const paymentData = {
-        InvoiceAmount: 100.00,  // Example amount
-        CurrencyIso: 'KWD',
-        PaymentMethodId: 2,  // Assuming 2 is the card payment method
-        CustomerName: name.value,
-        CallBackUrl: 'http://localhost:3000/PaymentSuccessful',
-        ErrorUrl: 'http://localhost:3000/paymentFailure',
-        CardInfo: {
-            CardNumber: cardNumber.value,
-            ExpiryMonth: expiryDate.value.split('/')[0],
-            ExpiryYear: expiryDate.value.split('/')[1],
-            SecurityCode: cvc.value,
+const loadScript = (src) => {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
+    });
+};
+
+const initMyFatoorah = () => {
+    const config = {
+        countryCode: countryCode,
+        sessionId: sessionId,
+        cardViewId: 'card-element',
+        supportedNetworks: 'v,m,ae,md',
+        onCardBinChanged: handleBinChanges,
+        style: {
+            hideCardIcons: true,
+            direction: 'rtl',
+            cardHeight: 300,
+            tokenHeight: 250,
+            input: {
+                color: 'black',
+                fontSize: '24px',
+                fontFamily: 'Montserrat Arabic',
+                inputHeight: '52px',
+                inputMargin: '30px',
+                borderColor: 'E5E5E5',
+                borderWidth: '1px',
+                borderRadius: '12px',
+                boxShadow: '',
+                placeHolder: {
+                    holderName: 'الاسم',
+                    cardNumber: 'رقم الكارت',
+                    expiryDate: 'MM / YY',
+                    securityCode: 'CVV',
+                },
+            },
+            text: {
+                saveCard: 'Save card info for future payment.',
+                addCard: 'Use another Card!',
+                deleteAlert: {
+                    title: 'Delete',
+                    message: 'Test',
+                    confirm: 'yes',
+                    cancel: 'no',
+                },
+            },
+            label: {
+                display: false,
+                color: 'black',
+                fontSize: '13px',
+                fontWeight: 'normal',
+                fontFamily: 'sans-serif',
+                text: {
+                    holderName: 'Card Holder Name',
+                    cardNumber: 'Card Number',
+                    expiryDate: 'Expiry Date',
+                    securityCode: 'Security Code',
+                },
+            },
+            error: {
+                borderColor: 'red',
+                borderRadius: '8px',
+                boxShadow: '0px',
+            },
         },
     };
+    myFatoorah.init(config);
+};
 
+onMounted(async () => {
     try {
-        const executeResponse = await myfatoorahService.executePayment(paymentData);
-        paymentUrl.value = executeResponse.Data.PaymentURL;
+        await loadScript('https://demo.myfatoorah.com/cardview/v2/session.js');
+        scriptLoaded.value = true;
+        initMyFatoorah();
     } catch (error) {
-        console.error('Payment error:', error);
+        console.error(error.message);
     }
+});
+
+const submit = () => {
+    if (!scriptLoaded.value) {
+        console.error('Script not loaded');
+        return;
+    }
+
+    myFatoorah
+        .submit()
+        .then((response) => {
+            const sessionId = response.sessionId;
+            const cardBrand = response.cardBrand;
+            const cardIdentifier = response.cardIdentifier;
+            console.log(sessionId, cardBrand, cardIdentifier);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+};
+
+const handleBinChanges = (bin) => {
+    console.log(bin);
 };
 </script>
 
@@ -73,36 +126,14 @@ const handlePayment = async () => {
     height: calc(var(--v-btn-height) + 52px);
 }
 
-.bigInput {
-    width: 100%;
-    border-radius: 12px;
-    border: 1px solid #E5E5E5;
-
-    padding: 30px;
-    gap: 10px;
-    font-size: 24px;
-
-}
-
-.active-btn {
-    border: 5px solid var(--mainColor);
-
-}
-
-input::placeholder {
-    color: #939393;
-    font-size: 24px;
-    font-weight: 500;
-}
-
 .payBtn {
     background-color: var(--mainColor);
     width: 100%;
-    margin-top: 24px;
+    /* margin-top: 24px; */
     font-size: 32px;
     color: white;
     border-radius: 12px;
     font-weight: 700;
-    padding: 30px
+    padding: 30px;
 }
 </style>

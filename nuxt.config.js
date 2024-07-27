@@ -6,16 +6,20 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/vuex.js'
   ],
+
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
   ],
+
   components: true,
   devtools: { enabled: true },
+
   css: [
     // CSS file in the project
     "@/assets/css/main.css",
   ],
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -37,6 +41,7 @@ export default defineNuxtConfig({
     // '@nuxtjs/vuex'
     // "pinia-plugin-persistedstate", //to save state
   ],
+
   vuetify: {
     moduleOptions: {
       /* module specific options */
@@ -48,6 +53,7 @@ export default defineNuxtConfig({
       },
     }
   },
+
   swiper: {
     // Swiper options
     //----------------------
@@ -76,6 +82,7 @@ export default defineNuxtConfig({
     },
     defaultLocale: "ar",
   },
+
   runtimeConfig: {
     public: {
       myfatoorahApiToken: process.env.MYFATOORAH_API_TOKEN,
@@ -99,6 +106,5 @@ export default defineNuxtConfig({
     script: [{ src: 'https://sa.myfatoorah.com/cardview/v2/session.js' }],
   },
 
-
-
+  compatibilityDate: '2024-07-26',
 });

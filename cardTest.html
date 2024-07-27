@@ -6,59 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card View Payment</title>
-    <style>
-        /* Basic styling for the page */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        #card-element {
-            width: 400px;
-            margin: 0 auto;
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <style></style>
 </head>
 
 <body>
-    <div>
-        <h1>Card View Payment</h1>
-        <script src="https://demo.myfatoorah.com/cardview/v2/session.js"></script>
+    <h1>Card View Payment</h1>
+
+    <script src="https://demo.myfatoorah.com/cardview/v2/session.js"></script>
+    <div style="width:400px">
         <div id="card-element"></div>
-        <button onclick="submit()">Pay Now</button>
     </div>
+    <button onclick="submit()">Pay Now</button>
+
 
     <script>
         var config = {
-            countryCode: "KWT", // Country code
+            countryCode: "KWT", // Here, add your Country Code.
+            sessionId: "00b2a7b2-2064-4758-95ee-3815e6ab024d", // Here you add the "SessionId" you receive from InitiateSession Endpoint.
             cardViewId: "card-element",
-            supportedNetworks: "v,m,ae,md",
+            supportedNetworks: "v,m,ae,md", //This field accepts "v,m,ae,md". This will control the cardBrand that the customers can enter.
+            //v: Visa, m: MasterCard, ae: Amex, md: Mada
             onCardBinChanged: handleBinChanges,
+            // The following style is optional.
             style: {
                 hideCardIcons: false,
                 direction: "ltr",
@@ -73,6 +42,7 @@
                     borderColor: "c7c7c7",
                     borderWidth: "1px",
                     borderRadius: "8px",
+                    boxShadow: "",
                     placeHolder: {
                         holderName: "Name On Card",
                         cardNumber: "Number",
@@ -111,52 +81,27 @@
             },
         };
         myFatoorah.init(config);
-        var MYFATOORAH_API_TOKEN = "eDXKgmWazK__EskGCtzZuKPPpKeii9rejYJvwBuhPokVT7LvSnQOANVMNlygInS2ryw7GjHiMDXbWVwSm7voZHkFNDn1iaO2QWk0sBw5qZ9tM7DjdBQy3TAUxZB93elkb9OnjgwWqk2GV94fLfuNvcMBodL8TGKzfzEsj59jEKIgexNK4yL9HZRLDXqgMxvOMkownMQjialOSRK0MNqFe4F7WTj7kYFB6mHK8TDaFhomfkLEpaZjlAS2lbjNo_z560ukIP9tjeafDveyZBojNmzM6STyi0rqi9YqHQaCpzCZ_UBS8wFj0pbcXwDjRNhdoJiCcAs89_GXdf6gF61Ti2v_7pGMNm1_cv22vyqBGJihQPUKIcqUtJLu1WDoCBWv0oD1tRZ9KN1n4Uu6y_ZHGJQoT5bzwKzkz7cLLE9eFouWOm28qvCTm5Wk4n5d5CKYRsQ_1ecxfis2Y9E9WTHXDFdRxVHlIc21ylrMQfj9qUo6vQK - vwt - ZSdCK3yc9XnmBcqahjTCmZE1 - hFPuVcbT2TlaYDhEP75d9spKM2lX - In1jQC5XZSbTN4C5itJDvDpvLxMUFyY5lmcrDH_PXhaYt1PpY34U1hKW6ykzV2L1jQuZIhwfdSq9xdUHj5Df_z5Vjs76PaQkGBp1iyWP7YiqlXm1 - wD2ydvyJVhlzYW6oIMDBl";
+
         function submit() {
-            // Initiate session with MyFatoorah API
-            fetch('https://apitest.myfatoorah.com/v2/InitiateSession', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + MYFATOORAH_API_TOKEN, // Replace with your actual API token
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({}) // You can pass any required data here
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
+            myFatoorah.submit()
+                // On success
+                .then(function (response) {
+                    // Here you need to pass session id to you backend here
+                    var sessionId = response.sessionId;
+                    var cardBrand = response.cardBrand;
+                    var cardIdentifier = response.cardIdentifier;
+
                 })
-                .then(data => {
-                    console.log('Session initiated:', data);
-                    var sessionId = data.SessionId; // Extract session ID from response
-                    myFatoorah.submit({
-                        sessionId: sessionId
-                    })
-                        .then(function (response) {
-                            console.log('Payment response:', response);
-                            var sessionId = response.sessionId;
-                            var cardBrand = response.cardBrand;
-                            var cardIdentifier = response.cardIdentifier;
-                            // Proceed with payment confirmation
-                            console.log('Session ID:', sessionId);
-                            console.log('Card Brand:', cardBrand);
-                            console.log('Card Identifier:', cardIdentifier);
-                        })
-                        .catch(function (error) {
-                            console.error('Payment error:', error);
-                        });
-                })
-                .catch(error => {
-                    console.error('Session initiation error:', error);
+                // In case of errors
+                .catch(function (error) {
+                    console.log(error);
                 });
         }
-
         function handleBinChanges(bin) {
-            console.log('Card BIN changed:', bin);
+            console.log(bin);
         }
     </script>
+
 </body>
 
 </html>
