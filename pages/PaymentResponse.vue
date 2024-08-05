@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-16">
+    <div class="mx-16" style="margin-top: 150px;">
         <v-container>
 
             <thank />
@@ -54,7 +54,7 @@ definePageMeta({
     max-width: none;
 }
 
-.v-application__wrap {
-    min-height: 10dvh !important;
-}
+/* .v-application__wrap {
+    min-height: 40dvh !important;
+} */
 </style>

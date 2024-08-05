@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="my-16" style="width: 50%; margin-right: auto; margin-left: auto;">
         <div>
             <div id="card-element"></div>
         </div>
@@ -12,7 +12,7 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 const countryCode = 'KWT';
-const sessionId = '01316588-67c7-4727-99f4-782abddaec54';
+const sessionId = '06cde1ab-8ea5-4700-b45d-f8eba5d0d847';
 const scriptLoaded = ref(false);
 
 const loadScript = (src) => {

@@ -57,10 +57,10 @@
 </template>
 <script setup>
 import { computed, ref } from 'vue';
-import { useStore } from '@/store/index'; // Adjust the path according to your store file
+// import { useStore } from '@/store/index'; // Adjust the path according to your store file
 import { useI18n } from 'vue-i18n';
 
-const store = useStore();
+// const store = useStore();
 const { locale } = useI18n();
 const discountStyle = computed(() => ({
     'margin-right': locale.value === 'ar' ? '15px' : '0',
