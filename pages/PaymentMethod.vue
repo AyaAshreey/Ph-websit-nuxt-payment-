@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-16" style="margin-bottom: 300px;">
+    <div class="mx-16" style="margin-bottom: 300px; margin-top: 150px;">
         <v-container>
             <v-row>
                 <v-col cols="7">
@@ -36,7 +36,7 @@ definePageMeta({
 
 <style scoped>
 .v-application__wrap {
-    min-height: 40dvh !important;
+    min-height: 35dvh !important;
 }
 
 .v-container {

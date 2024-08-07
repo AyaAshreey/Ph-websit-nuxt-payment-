@@ -3,6 +3,8 @@ import { defineNuxtConfig } from 'nuxt/config';
 
 
 export default defineNuxtConfig({
+
+  ssr: true,
   plugins: [
     '~/plugins/vuex.js'
   ],
@@ -37,11 +39,18 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "vuetify-nuxt-module",
     "nuxt-swiper",
+    // "@nuxtjs/proxy"
 
     // '@nuxtjs/vuex'
     // "pinia-plugin-persistedstate", //to save state
   ],
-
+  // proxy: {
+  //   '/api/': {
+  //     target: 'https://api.myfatoorah.com/v2',
+  //     pathRewrite: { '^/api/': '/' },
+  //     changeOrigin: true,
+  //   },
+  // },
   vuetify: {
     moduleOptions: {
       /* module specific options */
